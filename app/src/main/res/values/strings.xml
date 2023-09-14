@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Gelir Gider</string>
+
+    <string name="db_user">User</string>
+    <string name="db_table">Tablo</string>
+    <string name="db_note">Note</string>
+</resources>
