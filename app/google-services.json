@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "397859012713",
+    "firebase_url": "https://gelirgider-969dc-default-rtdb.firebaseio.com",
+    "project_id": "gelirgider-969dc",
+    "storage_bucket": "gelirgider-969dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397859012713:android:442cd4958d0e3ada8222f8",
+        "android_client_info": {
+          "package_name": "com.cuneyt.gelirgider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397859012713-balnimhsu2g1j9h38dbc5dqu36hslf2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFAbtCViSIFfgKt0_Y9JKzDZlBZCPWS1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397859012713-balnimhsu2g1j9h38dbc5dqu36hslf2e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

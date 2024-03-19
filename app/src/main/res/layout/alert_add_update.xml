@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constAddInfo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="250dp"
+        android:layout_height="325dp"
+        android:background="@drawable/bg_alert_dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constLoanCreditInfo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroupAdd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/editAmounth"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".87"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_textview"
+                android:ems="10"
+                android:fontFamily="@font/cabin_medium"
+                android:hint="Miktar"
+                android:inputType="number"
+                android:textSize="18dp"
+                android:paddingStart="10dp"
+                android:textColor="@color/burgundy"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTitle" />
+
+            <EditText
+                android:id="@+id/editTitle"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent=".87"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_textview"
+                android:ems="10"
+                android:textSize="18dp"
+                android:fontFamily="@font/cabin_medium"
+                android:hint="Başlık"
+                android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:textColor="@color/burgundy"
+                app:layout_constraintBottom_toTopOf="@+id/editAmounth"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroupAdd"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent=".4"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent=".6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/constButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constLoanCreditInfo">
+
+            <RadioButton
+                android:id="@+id/radioSalary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/white"
+                android:fontFamily="@font/cabin_medium"
+                android:text="Maaş"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+            <RadioButton
+                android:id="@+id/radioEarning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/white"
+                android:fontFamily="@font/cabin_medium"
+                android:text="Gelir"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+            <RadioButton
+                android:id="@+id/radioSpending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/white"
+                android:fontFamily="@font/cabin_medium"
+                android:text="Gider"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+            <RadioButton
+                android:id="@+id/radioSaving"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/white"
+                android:fontFamily="@font/cabin_medium"
+                android:text="Birikim"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+        </RadioGroup>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent=".6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/radioGroupAdd"
+            app:layout_constraintTop_toBottomOf="@+id/constLoanCreditInfo"
+            app:layout_constraintWidth_percent=".45">
+
+            <TextView
+                android:id="@+id/textBtNo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:textSize="18dp"
+                android:textColor="@color/blue_grey_1100"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="Çık"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textBtYes"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:textColor="@color/blue_grey_1100"
+                android:textSize="18dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:fontFamily="@font/cabin_medium"
+                app:layout_constraintBottom_toTopOf="@+id/textBtNo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".35"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

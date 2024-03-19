@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constAlertDialog"
+        android:layout_width="250dp"
+        android:layout_height="300dp"
+        android:background="@drawable/bg_alert_dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contsCurrentLoanCredit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".25"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textCurrentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin_medium"
+                android:text="Güncel Alacak / Verecek"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toTopOf="@+id/textCurrentLoanCredit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textCurrentLoanCredit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin_medium"
+                android:text="Miktar"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textCurrentTitle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constLoanCreditInfo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contsCurrentLoanCredit">
+
+            <EditText
+                android:id="@+id/editLoanCreditUpdate"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_textview"
+                android:ems="10"
+                android:fontFamily="@font/cabin_medium"
+                android:hint="Miktar"
+                android:gravity="center"
+                android:inputType="number"
+                app:layout_constraintHeight_percent=".85"
+                android:paddingStart="10dp"
+                android:textColor="@color/burgundy"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintWidth_percent=".85" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constBtYesNo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".55"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constLoanCreditInfo">
+
+            <TextView
+                android:id="@+id/textBtLoanCreditAdd"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:textSize="18dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="@color/blue_grey_1100"
+                android:text="Ekle"
+                android:gravity="center"
+                app:layout_constraintHeight_percent=".25"
+                app:layout_constraintBottom_toTopOf="@+id/textBtLoanCreditSub"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textBtLoanCreditSub"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textSize="18dp"
+                android:textColor="@color/blue_grey_1100"
+                android:text="Çıkar"
+                android:gravity="center"
+                app:layout_constraintHeight_percent=".25"
+                app:layout_constraintBottom_toTopOf="@+id/textBtLoanCreditNew"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textBtLoanCreditAdd" />
+
+            <TextView
+                android:id="@+id/textBtLoanCreditNew"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:textSize="18dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="@color/blue_grey_1100"
+                android:text="Yeni Değer"
+                android:gravity="center"
+                app:layout_constraintHeight_percent=".25"
+                app:layout_constraintBottom_toTopOf="@+id/textBtClose"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textBtLoanCreditSub" />
+
+            <TextView
+                android:id="@+id/textBtClose"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:textSize="18dp"
+                android:textColor="@color/blue_grey_1100"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="Çık"
+                android:gravity="center"
+                app:layout_constraintHeight_percent=".25"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textBtLoanCreditNew" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
