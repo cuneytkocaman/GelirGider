@@ -17,6 +17,8 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -57,6 +59,16 @@ public class LoanActivity extends AppCompatActivity {
     private MonthYear monthYear = new MonthYear();
     private String month = monthYear.currentlyDateTime("MMMM"); // Geçerli ay değişkene atandı.
     private String year = monthYear.currentlyDateTime("yyyy"); // Geçerli yıl değişkene atandı.
+    private Animation uptodown, downtoup, alpha;
+
+    private void anim(){
+        uptodown = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_up_to_down);
+        downtoup = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_down_to_up);
+        alpha = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_alpha);
+
+        loanBinding.constList.setAnimation(uptodown);
+        loanBinding.constBottomBar.setAnimation(downtoup);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +76,8 @@ public class LoanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loan);
 
         loanBinding = DataBindingUtil.setContentView(this, R.layout.activity_loan);
+
+        anim();
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();

@@ -48,7 +48,6 @@
                 android:id="@+id/constBottomBar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/bg_bottom_bar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".065"
@@ -73,8 +72,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.5"
-                        app:layout_constraintWidth_percent=".35"
-                        app:srcCompat="@drawable/ic_back" />
+                        app:layout_constraintWidth_percent=".4"
+                        app:srcCompat="@drawable/ic_logout" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,7 +95,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.5"
-                        app:layout_constraintWidth_percent=".35"
+                        app:layout_constraintWidth_percent=".4"
                         app:srcCompat="@drawable/ic_note" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,7 +110,7 @@
                     app:layout_constraintStart_toEndOf="@+id/constBottomLeft"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.5"
-                    app:layout_constraintWidth_percent=".15"
+                    app:layout_constraintWidth_percent=".2"
                     app:srcCompat="@drawable/ic_add" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -56,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
     private MobileDeviceName deviceName = new MobileDeviceName();
     private DateTime dateTime = new DateTime();
     private DatabaseReference referenceTablo, referenceUser, referenceNote, referenceError;
-
     final private DatabaseReference referenceTablo1 = FirebaseDatabase.getInstance().getReference("Tablo");
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
@@ -66,6 +67,17 @@ public class MainActivity extends AppCompatActivity {
     private RandomId randomId = new RandomId();
     private String currentlyMonth = monthYear.currentlyDateTime("MMMM"); // Geçerli ay değişkene atandı.
     private String currentlyYear = monthYear.currentlyDateTime("yyyy"); // Geçerli yıl değişkene atandı.
+    private Animation uptodown, downtoup, alpha;
+
+    private void anim(){
+        uptodown = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_up_to_down);
+        downtoup = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_down_to_up);
+        alpha = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_alpha);
+
+        mainBinding.constTopBar.setAnimation(uptodown);
+        mainBinding.constBottomBar.setAnimation(downtoup);
+        mainBinding.constTotal.setAnimation(downtoup);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+            anim();
 
             firebaseAuth = FirebaseAuth.getInstance();
             firebaseUser = firebaseAuth.getCurrentUser(); // Oturum açmış kullanıcı alındı.
@@ -324,7 +338,6 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog dialogAdd = builderAdd.create();
         dialogAdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
         textBtYes.setText("Ekle"); // Ekle ve güncelleme işlemleri için tek Alert Dialog tasarımı yapıldığı için, ekleme butonu tıklayınca Alert Dialog'daki onay butonuna 'Ekle' ifadesi yazdırıldı.
 
         textBtYes.setOnClickListener(new View.OnClickListener() {
@@ -392,20 +405,6 @@ public class MainActivity extends AppCompatActivity {
                                 }
 
                                 referenceTablo1.child(currentUserId).child(choiseYear).child(choiseMonth).child(ranId).setValue(earningSpendingModel); // Veri Firebase'e eklendi.
-
-                                /*referenceTablo1.child(currentUserId).child(choiseYear).child(choiseMonth).child(ranId).setValue(earningSpendingModel, new DatabaseReference.CompletionListener() {
-                                    @Override
-                                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                                        if (error != null){
-                                            Toast.makeText(MainActivity.this, "Hata" + error.getMessage(), Toast.LENGTH_SHORT).show();
-                                            Log.e("MESAJ:", error.getMessage());
-                                        } else{
-                                            Toast.makeText(MainActivity.this, "Eklendi.", Toast.LENGTH_SHORT).show();
-                                            Log.e("MESAJ:", "error.getMessage()");
-                                        }
-                                    }
-                                });*/
-
 
                             }
 
