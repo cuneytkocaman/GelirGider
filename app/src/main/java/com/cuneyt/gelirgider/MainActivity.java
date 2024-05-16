@@ -5,16 +5,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Path;
 import android.graphics.drawable.ColorDrawable;
+import android.icu.text.RelativeDateTimeFormatter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -44,6 +48,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -69,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
     private String currentlyYear = monthYear.currentlyDateTime("yyyy"); // Geçerli yıl değişkene atandı.
     private Animation uptodown, downtoup, alpha;
 
-    private void anim(){
-        uptodown = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_up_to_down);
-        downtoup = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_down_to_up);
-        alpha = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_alpha);
+    private void anim() {
+        uptodown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_up_to_down);
+        downtoup = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_down_to_up);
+        alpha = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_alpha);
 
         mainBinding.constTopBar.setAnimation(uptodown);
         mainBinding.constBottomBar.setAnimation(downtoup);
@@ -94,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
             firebaseAuth = FirebaseAuth.getInstance();
             firebaseUser = firebaseAuth.getCurrentUser(); // Oturum açmış kullanıcı alındı.
             referenceUser = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.db_user)); // Kullanıcı tablosu oluşturuldu.
-            // referenceTablo1 = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.db_table));
 
             mainBinding.textMonth.setText(currentlyMonth); // Geçerli ay editText'te gösterildi.
             mainBinding.textYear.setText(currentlyYear); // Geçerli yıl editText'te gösterildi.
@@ -115,46 +120,6 @@ public class MainActivity extends AppCompatActivity {
                     yearChoise();
                 }
             });
-
-        /*mainBinding.textYear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builderYear = new AlertDialog.Builder(MainActivity.this);
-                View viewYear = getLayoutInflater().inflate(R.layout.alert_year, null);
-
-                TextView textBtYes = viewYear.findViewById(R.id.textBtYes);
-                TextView textBtNo = viewYear.findViewById(R.id.textBtNo);
-                EditText editYearAdd = viewYear.findViewById(R.id.editYearAdd);
-
-                builderYear.setView(viewYear);
-
-                AlertDialog dialogYear = builderYear.create();
-                dialogYear.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-                dialogYear.show();
-                textBtYes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        String choiseYear = editYearAdd.getText().toString();
-
-                        if(TextUtils.isEmpty(choiseYear)){
-                            Toast.makeText(MainActivity.this, "Yıl giriniz.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            mainBinding.textYear.setText(choiseYear);
-                            dialogYear.dismiss();
-                        }
-                    }
-                });
-
-                textBtNo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialogYear.dismiss();
-                    }
-                });
-            }
-        });*/
 
             mainBinding.textMonth.setOnClickListener(new View.OnClickListener() { // Ay seçme işlemi
                 @Override
@@ -180,6 +145,12 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intentInfo = new Intent(MainActivity.this, InfoActivity.class);
                     startActivity(intentInfo);
+                }
+            });
+            mainBinding.textTotalSalary.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    calculation();
                 }
             });
             mainBinding.imgBtLogout.setOnClickListener(new View.OnClickListener() {
@@ -234,17 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
 
                     RadioButton radioButtonYear = radioGroupYear.findViewById(radioSelectId);
-
                     mainBinding.textYear.setText(radioButtonYear.getText().toString());
-
-                           /*String radioYear = radioButtonYear.getText().toString();
-                            String textYear = mainBinding.textYear.getText().toString();
-
-                            show(radioYear, textYear);
-
-                            mainBinding.textTotalSalary.setText("0");
-                            mainBinding.textTotalSpending.setText("0");
-                            mainBinding.textRemaining.setText("0");*/
                     monthChoise();
 
                     dialogYear.dismiss();
@@ -320,7 +281,6 @@ public class MainActivity extends AppCompatActivity {
                 dialogMonth.dismiss();
             }
         });
-
     }
 
     public void add(String choiseMonth, String choiseYear) {
@@ -338,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog dialogAdd = builderAdd.create();
         dialogAdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         textBtYes.setText("Ekle"); // Ekle ve güncelleme işlemleri için tek Alert Dialog tasarımı yapıldığı için, ekleme butonu tıklayınca Alert Dialog'daki onay butonuna 'Ekle' ifadesi yazdırıldı.
 
         textBtYes.setOnClickListener(new View.OnClickListener() {
@@ -377,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
                                 String title = editTitle.getText().toString();
                                 String amounth = editAmounth.getText().toString();
                                 String type = radioButtonAdd.getText().toString();
-                                String pay = "-";
+                                boolean pay = false;
 
                                 Integer intAmaounth = Integer.parseInt(amounth); // EarningSpendingModel sınıfındaki değişken integer olduğundan editAmounth ile gelen veri integer'a çevrildi.
 
@@ -388,26 +349,25 @@ public class MainActivity extends AppCompatActivity {
 
                                 if (type.equals("Maaş")) { // Recycler View'de sıralama yapmak için her gelir ve gider verisinin başına bir rakam ve verinin adı verildi. Bu sayede her tür kendi içinde alfabetik olarak sıralanabildi.
                                     String number = "1" + title;
-                                    earningSpendingModel = new EarningSpendingModel(ranId, title, intAmaounth, type, number, choiseYear, choiseMonth, pay);
+                                    earningSpendingModel = new EarningSpendingModel(uniqueId, title, intAmaounth, type, number, choiseYear, choiseMonth);
 
                                 } else if (type.equals("Gelir")) {
                                     String number = "2" + title;
-                                    earningSpendingModel = new EarningSpendingModel(ranId, title, intAmaounth, type, number, choiseYear, choiseMonth, pay);
+                                    earningSpendingModel = new EarningSpendingModel(uniqueId, title, intAmaounth, type, number, choiseYear, choiseMonth);
 
                                 } else if (type.equals("Birikim")) {
                                     String number = "3" + title;
-                                    earningSpendingModel = new EarningSpendingModel(ranId, title, intAmaounth, type, number, choiseYear, choiseMonth, pay);
+                                    earningSpendingModel = new EarningSpendingModel(uniqueId, title, intAmaounth, type, number, choiseYear, choiseMonth);
 
                                 } else if (type.equals("Gider")) {
                                     String number = "4" + title;
-                                    earningSpendingModel = new EarningSpendingModel(ranId, title, intAmaounth, type, number, choiseYear, choiseMonth, pay);
+                                    earningSpendingModel = new EarningSpendingModel(uniqueId, title, intAmaounth, type, number, choiseYear, choiseMonth);
 
                                 }
 
-                                referenceTablo1.child(currentUserId).child(choiseYear).child(choiseMonth).child(ranId).setValue(earningSpendingModel); // Veri Firebase'e eklendi.
+                                referenceTablo1.child(currentUserId).child(choiseYear).child(choiseMonth).child(uniqueId).setValue(earningSpendingModel); // Veri Firebase'e eklendi.
 
                             }
-
                             dialogAdd.dismiss();
                         }
 
@@ -435,6 +395,7 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.rvTable.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, true); // VERTICAL, true: RecyclerView'e eklenen veri en alttan üste doğru eklenir.
         linearLayoutManager.setStackFromEnd(true); // RecyclerView'e eklenen veri sayfayı otomatik kaydırır.
+        mainBinding.rvTable.setItemAnimator(new DefaultItemAnimator());
         mainBinding.rvTable.setLayoutManager(linearLayoutManager);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -593,6 +554,55 @@ public class MainActivity extends AppCompatActivity {
 
 
         textNoteBtNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogNote.dismiss();
+            }
+        });
+
+        dialogNote.show();
+    }
+
+    public void calculation(){
+        AlertDialog.Builder builderCalc = new AlertDialog.Builder(MainActivity.this);
+        View viewNote = getLayoutInflater().inflate(R.layout.alert_salary_calc, null);
+
+        EditText editSalaryCuneyt = viewNote.findViewById(R.id.editSalaryCuneyt);
+        EditText editSalarySibel = viewNote.findViewById(R.id.editSalarySibel);
+        EditText editPercent = viewNote.findViewById(R.id.editPercent);
+        TextView textAlertCuneyt = viewNote.findViewById(R.id.textAlertCuneyt);
+        TextView textAlertSibel = viewNote.findViewById(R.id.textAlertSibel);
+        TextView textCuneyt = viewNote.findViewById(R.id.textCuneyt);
+        TextView textSibel = viewNote.findViewById(R.id.textSibel);
+        TextView textBtCalc = viewNote.findViewById(R.id.textBtCalc);
+        TextView textBtClose = viewNote.findViewById(R.id.textBtClose);
+
+        builderCalc.setView(viewNote);
+
+        AlertDialog dialogNote = builderCalc.create();
+        dialogNote.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        textBtCalc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer cuneyt = Integer.parseInt(editSalaryCuneyt.getText().toString());
+                Integer sibel = Integer.parseInt(editSalarySibel.getText().toString());
+                Integer percent = Integer.parseInt(editPercent.getText().toString());
+
+                int cuneytNew = (cuneyt * (100 + percent)) / 100;
+                int sibelNew = (sibel * (100 + percent)) / 100;
+
+                textAlertCuneyt.setText(String.valueOf(cuneytNew));
+                textAlertSibel.setText(String.valueOf(sibelNew));
+
+                textAlertCuneyt.setVisibility(View.VISIBLE);
+                textAlertSibel.setVisibility(View.VISIBLE);
+                textCuneyt.setVisibility(View.VISIBLE);
+                textSibel.setVisibility(View.VISIBLE);
+            }
+        });
+
+        textBtClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialogNote.dismiss();

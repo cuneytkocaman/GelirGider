@@ -127,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()){ // Kayıt başarılı ise çalışır ve kullanıcı kaydı tamamlanır.
 
-                            firebaseUser = firebaseAuth.getCurrentUser();
+                            firebaseUser = firebaseAuth.getCurrentUser(); // Giriş yapan kullanıcı
                             referenceUser = FirebaseDatabase.getInstance().getReference().child("User");
 
                             referenceUser.addValueEventListener(new ValueEventListener() {
@@ -155,34 +155,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                             Toast.makeText(RegisterActivity.this, "Kayıt başarılı.", Toast.LENGTH_LONG).show();
 
-                            /*referenceUser.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                                    for (DataSnapshot d : snapshot.getChildren()){
-                                        UserModel user = d.getValue(UserModel.class);
-                                        String userName = user.getName().toString();
-
-                                        if (d.equals(null)){
-
-
-
-                                        } else if (regBinding.editRegName.equals(userName)){
-
-                                            Toast.makeText(RegisterActivity.this, "Böyle bir kullanıcı var.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });*/
-
                         } else {
 
-                           // Toast.makeText(RegisterActivity.this, "Kayıt başarısız. Böyle bir kullanıcı mevcut.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Kayıt başarısız.", Toast.LENGTH_LONG).show();
                         }
                     }
                 });

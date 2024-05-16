@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constAlertDialog"
+        android:layout_width="250dp"
+        android:layout_height="300dp"
+        android:background="@drawable/bg_alert_dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constSalary"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constLoanCreditInfo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/editSalarySibel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_textview"
+                android:ems="10"
+                android:fontFamily="@font/cabin_medium"
+                android:gravity="center"
+                android:hint="Sibel Maaş"
+                android:inputType="number"
+                android:textColor="@color/burgundy"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editSalaryCuneyt"
+                app:layout_constraintWidth_percent=".85" />
+
+            <EditText
+                android:id="@+id/editSalaryCuneyt"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_textview"
+                android:ems="10"
+                android:fontFamily="@font/cabin_medium"
+                android:gravity="center"
+                android:hint="Cüneyt Maaş"
+                android:inputType="number"
+                android:textColor="@color/burgundy"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toTopOf="@+id/editSalarySibel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".85" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constLoanCreditInfo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constloanCreditType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constSalary">
+
+            <EditText
+                android:id="@+id/editPercent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_textview"
+                android:ems="10"
+                android:fontFamily="@font/cabin_medium"
+                android:gravity="center"
+                android:hint="Oran"
+                android:inputType="number"
+                android:textColor="@color/burgundy"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".9"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".35" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constloanCreditType"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/teal_700"
+            app:layout_constraintBottom_toTopOf="@+id/constBtYesNo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".30"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constLoanCreditInfo">
+
+            <TextView
+                android:id="@+id/textSibel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="Sibel"
+                android:visibility="invisible"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textCuneyt"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textCuneyt"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="Cüneyt"
+                android:visibility="invisible"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/textSibel"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textAlertSibel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textAlertCuneyt" />
+
+            <TextView
+                android:id="@+id/textAlertCuneyt"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:visibility="invisible"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                app:layout_constraintHeight_percent=".6"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textAlertSibel"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constBtYesNo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constloanCreditType">
+
+            <TextView
+                android:id="@+id/textBtCalc"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="Hesapla"
+                android:textColor="@color/blue_grey_1100"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textBtClose"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <TextView
+                android:id="@+id/textBtClose"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/cabin_medium"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="Çık"
+                android:textColor="@color/blue_grey_1100"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textBtCalc"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

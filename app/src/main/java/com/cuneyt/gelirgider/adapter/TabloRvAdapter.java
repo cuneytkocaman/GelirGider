@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
     private static final int VIEW_TYPE_EARNING = 2;
     private static final int VIEW_TYPE_SAVING = 3;
     private static final int VIEW_TYPE_SPENDING = 4; // Her türün (maaş, gider, birikim, gelir) tasarımı int değişkene atandı. Bu değişkenler, int kontrolüyle 'DesignListObjectHolder' sınıfından tasarıma bağlandı.
-                                                     // Bu numaralar ekleme işlemi sırasında türler için atanmış ve DB'ye yazılmıştı. Maaş=1, Gelir=2, Birikim=3, Gider=4
+    // Bu numaralar ekleme işlemi sırasında türler için atanmış ve DB'ye yazılmıştı. Maaş=1, Gelir=2, Birikim=3, Gider=4
 
     public TabloRvAdapter(Context context, ArrayList<EarningSpendingModel> ggModelLists) {
         this.context = context;
@@ -60,7 +61,9 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
     public class DesignListObjectHolder extends RecyclerView.ViewHolder {
         TextView textRvBaslik, textRvMiktar;
         ConstraintLayout constTableRow;
-        CheckBox cbPayment;
+       // CheckBox cbPayment;
+
+        ImageView imgPay;
 
         public DesignListObjectHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,7 +71,8 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
             textRvBaslik = itemView.findViewById(R.id.textRvTitle);
             textRvMiktar = itemView.findViewById(R.id.textRvAmounth);
             constTableRow = itemView.findViewById(R.id.constTableRow);
-            cbPayment = itemView.findViewById(R.id.cbPayment);
+          //  cbPayment = itemView.findViewById(R.id.cbPayment);
+            imgPay = itemView.findViewById(R.id.imgPay);
         }
     }
 
@@ -104,7 +108,6 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
         String currMonth = ggModelLists.get(position).getMonth();
         String title = ggModelLists.get(position).getTitle();
         int amounth = ggModelLists.get(position).getAmounth();
-        String pay = ggModelLists.get(position).getPayment();
 
         holder.textRvBaslik.setText(title);
         holder.textRvMiktar.setText(String.valueOf(amounth));
@@ -116,6 +119,62 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
         update(holder, title, amounth, id, currYear, currMonth);
 
         delete(holder, id, currYear, currMonth);
+
+       /* String currUser = firebaseUser.getUid().toString();
+        
+        holder.constTableRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                boolean payStatus = true;
+
+                HashMap<String, Object> updatePay = new HashMap<>();
+                updatePay.put("payment", payStatus);
+
+                holder.imgPay.setVisibility(View.VISIBLE);
+
+                referenceTable.child(currUser).child(currYear).child(currMonth).child(id).updateChildren(updatePay); // Güncelleme yapıldı.
+
+            }
+        });*/
+
+        /*holder.cbPayment.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() { // Ödendi-ödenmedi
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                String payStatus = "ödendi";
+
+                HashMap<String, Object> updatePay = new HashMap<>();
+                updatePay.put("payment", payStatus);
+
+                referenceTable.child(currUser).child(currYear).child(currMonth).child(id).updateChildren(updatePay); // Güncelleme yapıldı.
+
+                if (isChecked) {
+                    boolean payStatus = true;
+
+                    HashMap<String, Object> updatePay = new HashMap<>();
+                    updatePay.put("payment", payStatus);
+
+                    buttonView.findViewById(R.id.cbPayment);
+
+                    referenceTable.child(currUser).child(currYear).child(currMonth).child(id).updateChildren(updatePay); // Güncelleme yapıldı.
+
+                    holder.cbPayment.setChecked(true);
+
+                    Log.e("GUNCEL", id + " / " + buttonView.getText().toString());
+
+                } else if (!isChecked) {
+                    boolean payStatus = false;
+
+                    HashMap<String, Object> updatePay = new HashMap<>();
+                    updatePay.put("payment", payStatus);
+
+                    referenceTable.child(currUser).child(currYear).child(currMonth).child(id).updateChildren(updatePay); // Güncelleme yapıldı.
+
+                    holder.cbPayment.setChecked(false);
+                }
+            }
+        });*/
     }
 
     @Override
@@ -123,44 +182,15 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
         return ggModelLists.size();
     }
 
-    public void update(DesignListObjectHolder holder, String title, int amounth, String id, String cYear, String cMonth){
+    public void update(DesignListObjectHolder holder, String title, int amounth, String id, String cYear, String cMonth) {
         referenceUser.addValueEventListener(new ValueEventListener() { // Güncelleme işlemleri
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 String currentUser = snapshot.child(firebaseUser.getUid()).child("id").getValue().toString(); // Online kullanıcı Id'si.
-
-                /*holder.cbPayment.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() { // Ödendi, ödenmedi checkbox kontrolü
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                        if (isChecked){
-                            String payStatus = "ödendi";
-
-                            HashMap<String, Object> updatePay = new HashMap<>();
-                            updatePay.put("payment", payStatus);
-
-                            referenceTable.child(currentUser).child(cYear).child(cMonth).child(id).updateChildren(updatePay); // Güncelleme yapıldı.
-
-                            Log.e("CHECKBOX: ", title);
-
-                        } else if (!isChecked){
-                            String payStatus = "ödendi";
-
-                            HashMap<String, Object> updatePay = new HashMap<>();
-                            updatePay.put("payment", payStatus);
-
-                            referenceTable.child(currentUser).child(cYear).child(cMonth).child(id).updateChildren(updatePay); // Güncelleme yapıldı.
-
-                            Log.e("CHECKBOX: ", title);
-                        }
-                    }
-                });*/
 
                 holder.constTableRow.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         AlertDialog.Builder builderUpdate = new AlertDialog.Builder(context);
                         View viewUpdate = LayoutInflater.from(v.getContext()).inflate(R.layout.alert_add_update, null);
 
@@ -171,7 +201,6 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
                         TextView textBtNo = viewUpdate.findViewById(R.id.textBtNo);
 
                         builderUpdate.setView(viewUpdate);
-
                         AlertDialog dialogUpdate = builderUpdate.create();
                         dialogUpdate.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -212,6 +241,7 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
                                         updateData.put("title", editTitle.getText().toString());
                                         updateData.put("amounth", intAmounth);
                                         updateData.put("type", radioButtonAdd.getText().toString());
+                                      //  updateData.put("payment", true);
 
                                         if (radioType.equals("Maaş")) { // Güncellemede tür değiştirildiğinde, türe atanan numaralar da değiştirildi.
                                             String no = "1" + title;
@@ -222,7 +252,7 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
                                             updateData.put("sort", no);
 
                                         } else if (radioType.equals("Birikim")) {
-                                            String no = "3" + title ;
+                                            String no = "3" + title;
                                             updateData.put("sort", no);
 
                                         } else if (radioType.equals("Gider")) {
@@ -233,10 +263,10 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
                                         referenceTable.child(currentUser).child(cYear).child(cMonth).child(id).updateChildren(updateData, new DatabaseReference.CompletionListener() {
                                             @Override
                                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                                                if (error != null){
+                                                if (error != null) {
                                                     Toast.makeText(context, "Hata" + error.getMessage(), Toast.LENGTH_SHORT).show();
 
-                                                } else{
+                                                } else {
                                                     Toast.makeText(context, "Güncellendi.", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
@@ -258,13 +288,15 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
                     }
                 });
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
-    public void delete(DesignListObjectHolder holder, String id, String cYear, String cMonth){
+
+    public void delete(DesignListObjectHolder holder, String id, String cYear, String cMonth) {
         holder.constTableRow.setOnLongClickListener(new View.OnLongClickListener() { // Silme işlemleri
             @Override
             public boolean onLongClick(View v) {
@@ -296,6 +328,7 @@ public class TabloRvAdapter extends RecyclerView.Adapter<TabloRvAdapter.DesignLi
 
                                 Toast.makeText(context, "Veri silindi.", Toast.LENGTH_SHORT).show();
                             }
+
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
 

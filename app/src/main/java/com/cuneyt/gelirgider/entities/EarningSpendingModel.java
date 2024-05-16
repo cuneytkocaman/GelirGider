@@ -8,7 +8,7 @@ public class EarningSpendingModel {
     private String sort; // Verinin sıralanması
     private String year; // Geçerli yıl
     private String month; // Geçerli ay
-    private String payment; // Giderleri ödenip ödenmediği bilgisi
+//    private boolean payment; // Giderleri ödenip ödenmediği bilgisi
     private String earningNote; // Ay ile ilgili gelir notu
     private String spendingNote; // Ay ile ilgili gider notu
     private String savingNote;
@@ -24,7 +24,17 @@ public class EarningSpendingModel {
         this.savingNote = savingNote;
     }
 
-    public EarningSpendingModel(String id, String title, int amounth, String type, String sort, String year, String month, String payment) {
+    public EarningSpendingModel(String id, String title, int amounth, String type, String sort, String year, String month) {
+        this.id = id;
+        this.title = title;
+        this.amounth = amounth;
+        this.type = type;
+        this.sort = sort;
+        this.year = year;
+        this.month = month;
+    }
+
+    /*public EarningSpendingModel(String id, String title, int amounth, String type, String sort, String year, String month, boolean payment) {
         this.id = id;
         this.title = title;
         this.amounth = amounth;
@@ -33,7 +43,7 @@ public class EarningSpendingModel {
         this.year = year;
         this.month = month;
         this.payment = payment;
-    }
+    }*/
 
     public String getId() {
         return id;
@@ -91,13 +101,13 @@ public class EarningSpendingModel {
         this.month = month;
     }
 
-    public String getPayment() {
+    /*public boolean isPayment() {
         return payment;
     }
 
-    public void setPayment(String payment) {
+    public void setPayment(boolean payment) {
         this.payment = payment;
-    }
+    }*/
 
     public String getEarningNote() {
         return earningNote;

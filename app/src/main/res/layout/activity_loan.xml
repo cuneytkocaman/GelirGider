@@ -22,15 +22,44 @@
             app:layout_constraintVertical_bias="0.5">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constList"
+                android:id="@id/constTopBar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintHeight_percent=".925"
-                app:layout_constraintBottom_toTopOf="@+id/constBottomBar"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".065"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textLoanCreditTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/cabin_medium"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:text="Alacak / Verecek Listesi"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constList"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/constBottomBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".87"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constTopBar">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvLoan"
@@ -113,6 +142,7 @@
                     app:layout_constraintWidth_percent=".2"
                     app:srcCompat="@drawable/ic_add" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

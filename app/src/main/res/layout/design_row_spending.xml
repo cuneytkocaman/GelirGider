@@ -49,17 +49,17 @@
             app:layout_constraintVertical_bias="0.5"
             app:layout_constraintWidth_percent=".28" />
 
-        <CheckBox
-            android:id="@+id/cbPayment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:buttonTint="@color/white"
+        <ImageView
+            android:id="@+id/imgPay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textRvAmounth"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5"
-            app:layout_constraintWidth_percent=".15" />
+            app:srcCompat="@drawable/ic_down" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
