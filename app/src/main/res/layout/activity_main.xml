@@ -6,8 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        android:background="@drawable/bg_app">
+        android:background="@drawable/bg_app"
+        tools:context=".MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constMain"
@@ -17,37 +17,35 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintWidth_percent=".96"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintWidth_percent=".96">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constTopBar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".06"
+                app:layout_constraintHeight_percent=".075"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constMonthYear"
+                    android:id="@+id/constYearMonth"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:layout_constraintWidth_percent=".7">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/textYear"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
+                        android:background="?android:attr/selectableItemBackground"
                         android:fontFamily="@font/cabin_medium"
-                        android:foreground="?android:attr/selectableItemBackground"
                         android:gravity="center"
                         android:text="Yıl"
                         android:textColor="@color/white"
@@ -58,14 +56,14 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.5"
-                        app:layout_constraintWidth_percent=".5" />
+                        app:layout_constraintWidth_percent=".4" />
 
                     <TextView
                         android:id="@+id/textMonth"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
+                        android:background="?android:attr/selectableItemBackground"
                         android:fontFamily="@font/cabin_medium"
-                        android:foreground="?android:attr/selectableItemBackground"
                         android:gravity="center"
                         android:text="Ay"
                         android:textColor="@color/white"
@@ -76,7 +74,7 @@
                         app:layout_constraintStart_toEndOf="@+id/textYear"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.5"
-                        app:layout_constraintWidth_percent=".5" />
+                        app:layout_constraintWidth_percent=".4" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -85,9 +83,8 @@
                 android:id="@+id/constList"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/constTotal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".76"
+                app:layout_constraintHeight_percent=".7"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constTopBar">
@@ -98,29 +95,158 @@
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent=".99"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constBottom"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".075"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageButton
+                    android:id="@+id/imgBtLogout"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imgBtInfo"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:layout_constraintWidth_percent=".20"
+                    app:srcCompat="@drawable/ic_logout" />
+
+
+                <ImageButton
+                    android:id="@+id/imgBtInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imgBtAdd"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/imgBtLogout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:layout_constraintWidth_percent=".2"
+                    app:srcCompat="@drawable/ic_info" />
+
+                <ImageButton
+                    android:id="@+id/imgBtLoanCredit"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imgBtNote"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/imgBtAdd"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:layout_constraintWidth_percent=".2"
+                    app:srcCompat="@drawable/ic_loan_credit" />
+
+                <ImageButton
+                    android:id="@+id/imgBtNote"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/imgBtLoanCredit"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:layout_constraintWidth_percent=".2"
+                    app:srcCompat="@drawable/ic_note" />
+
+                <ImageButton
+                    android:id="@+id/imgBtAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imgBtLoanCredit"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/imgBtInfo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:layout_constraintWidth_percent=".2"
+                    app:srcCompat="@drawable/ic_add" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constTotal"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/constBottomBar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".1"
+                app:layout_constraintHeight_percent=".15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constList">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constSalary"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_demo_total_salary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHeight_percent=".85"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:layout_constraintWidth_percent=".32">
+
+                    <TextView
+                        android:id="@+id/textTotalSalaryTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:fontFamily="@font/cabin"
+                        android:gravity="center"
+                        android:text="Maaş"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toTopOf="@+id/textTotalSalary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent=".4"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textTotalSalary"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:fontFamily="@font/cabin_medium"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="21dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent=".6"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textTotalSalaryTitle" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constSpending"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/bg_total_spending"
+                    android:background="@drawable/bg_demo_total_spending"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/constRemaining"
+                    app:layout_constraintHeight_percent=".85"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/constSalary"
                     app:layout_constraintTop_toTopOf="parent"
@@ -128,17 +254,17 @@
                     app:layout_constraintWidth_percent=".32">
 
                     <TextView
-                        android:id="@+id/textTotalSpendingTitte"
+                        android:id="@+id/textTotalSpendingTitle"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:fontFamily="@font/cabin"
                         android:gravity="center"
                         android:text="Harcama"
-                        android:textColor="@color/blue_grey_1100"
+                        android:textColor="@color/white"
                         android:textSize="14dp"
                         app:layout_constraintBottom_toTopOf="@+id/textTotalSpending"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".35"
+                        app:layout_constraintHeight_percent=".4"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -149,25 +275,25 @@
                         android:layout_height="0dp"
                         android:fontFamily="@font/cabin_medium"
                         android:gravity="center"
-                        android:inputType="number"
                         android:text="0"
-                        android:textColor="@color/blue_grey_1100"
-                        android:textSize="22dp"
+                        android:textColor="@color/white"
+                        android:textSize="21dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".65"
+                        app:layout_constraintHeight_percent=".6"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textTotalSpendingTitte" />
+                        app:layout_constraintTop_toBottomOf="@+id/textTotalSpendingTitle" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constRemaining"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/bg_total_remaining"
+                    android:background="@drawable/bg_demo_total_remaining"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".85"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.5"
                     app:layout_constraintWidth_percent=".32">
@@ -179,11 +305,11 @@
                         android:fontFamily="@font/cabin"
                         android:gravity="center"
                         android:text="Kalan"
-                        android:textColor="@color/blue_grey_1100"
+                        android:textColor="@color/white"
                         android:textSize="14dp"
                         app:layout_constraintBottom_toTopOf="@+id/textRemaining"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".35"
+                        app:layout_constraintHeight_percent=".4"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -194,173 +320,17 @@
                         android:layout_height="0dp"
                         android:fontFamily="@font/cabin_medium"
                         android:gravity="center"
-                        android:inputType="number"
                         android:text="0"
-                        android:textColor="@color/blue_grey_1100"
-                        android:textSize="22dp"
+                        android:textColor="@color/white"
+                        android:textSize="21dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".65"
+                        app:layout_constraintHeight_percent=".6"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textRemainingTitle" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constSalary"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@drawable/bg_total_salary"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:layout_constraintWidth_percent=".32">
-
-                    <TextView
-                        android:id="@+id/textTotalSalaryTitte"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:fontFamily="@font/cabin"
-                        android:gravity="center"
-                        android:text="Maaş"
-                        android:textColor="@color/blue_grey_1100"
-                        android:textSize="14dp"
-                        app:layout_constraintBottom_toTopOf="@+id/textTotalSalary"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".35"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textTotalSalary"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:fontFamily="@font/cabin_medium"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:text="0"
-                        android:textColor="@color/blue_grey_1100"
-                        android:textSize="22dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHeight_percent=".65"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textTotalSalaryTitte" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constBottomBar"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".065"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constTotal">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constBottomLeft"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent=".4">
-
-                    <ImageButton
-                        android:id="@+id/imgBtLogout"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="?android:attr/selectableItemBackground"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imgBtInfo"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.5"
-                        app:layout_constraintWidth_percent=".5"
-                        app:srcCompat="@drawable/ic_logout" />
-
-                    <ImageButton
-                        android:id="@+id/imgBtInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="?android:attr/selectableItemBackground"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/imgBtLogout"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.5"
-                        app:layout_constraintWidth_percent=".5"
-                        app:srcCompat="@drawable/ic_info" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constBottomRight"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent=".4">
-
-                    <ImageButton
-                        android:id="@+id/imgBtLoanCredit"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="?android:attr/selectableItemBackground"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imgBtNote"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.5"
-                        app:layout_constraintWidth_percent=".5"
-                        app:srcCompat="@drawable/ic_loan_credit" />
-
-                    <ImageButton
-                        android:id="@+id/imgBtNote"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/imgBtLoanCredit"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.5"
-                        app:layout_constraintWidth_percent=".5"
-                        app:srcCompat="@drawable/ic_note" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <ImageButton
-                    android:id="@+id/imgBtAdd"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/constBottomRight"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/constBottomLeft"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:layout_constraintWidth_percent=".2"
-                    app:srcCompat="@drawable/ic_add" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -80,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
         downtoup = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_down_to_up);
         alpha = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_alpha);
 
-        mainBinding.constTopBar.setAnimation(uptodown);
-        mainBinding.constBottomBar.setAnimation(downtoup);
-        mainBinding.constTotal.setAnimation(downtoup);
+        mainBinding.constYearMonth.setAnimation(uptodown);
+        mainBinding.constBottom.setAnimation(downtoup);
+      //  mainBinding.constTotal.setAnimation(downtoup);
     }
 
     @Override
@@ -585,20 +585,29 @@ public class MainActivity extends AppCompatActivity {
         textBtCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Integer cuneyt = Integer.parseInt(editSalaryCuneyt.getText().toString());
-                Integer sibel = Integer.parseInt(editSalarySibel.getText().toString());
-                Integer percent = Integer.parseInt(editPercent.getText().toString());
 
-                int cuneytNew = (cuneyt * (100 + percent)) / 100;
-                int sibelNew = (sibel * (100 + percent)) / 100;
+                if(TextUtils.isEmpty(editSalaryCuneyt.getText().toString()) || TextUtils.isEmpty(editSalarySibel.getText().toString()) || TextUtils.isEmpty(editPercent.getText().toString())){
 
-                textAlertCuneyt.setText(String.valueOf(cuneytNew));
-                textAlertSibel.setText(String.valueOf(sibelNew));
+                    Toast.makeText(MainActivity.this, "Bilgileri giriniz.", Toast.LENGTH_SHORT).show();
 
-                textAlertCuneyt.setVisibility(View.VISIBLE);
-                textAlertSibel.setVisibility(View.VISIBLE);
-                textCuneyt.setVisibility(View.VISIBLE);
-                textSibel.setVisibility(View.VISIBLE);
+                } else {
+                    Integer cuneyt = Integer.parseInt(editSalaryCuneyt.getText().toString());
+                    Integer sibel = Integer.parseInt(editSalarySibel.getText().toString());
+                    Integer percent = Integer.parseInt(editPercent.getText().toString());
+
+                    int cuneytNew = (cuneyt * (100 + percent)) / 100;
+                    int sibelNew = (sibel * (100 + percent)) / 100;
+
+                    textAlertCuneyt.setText(String.valueOf(cuneytNew));
+                    textAlertSibel.setText(String.valueOf(sibelNew));
+
+                    textAlertCuneyt.setVisibility(View.VISIBLE);
+                    textAlertSibel.setVisibility(View.VISIBLE);
+                    textCuneyt.setVisibility(View.VISIBLE);
+                    textSibel.setVisibility(View.VISIBLE);
+                }
+
+
             }
         });
 

@@ -8,6 +8,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="bottom_icon">#D597C5</color>
+    <color name="background_1">#2A373E</color>
+    <color name="background_2">#1B2327</color>
+
+    <color name="salary">#75A47F</color>
+    <color name="earning">#99BC85</color>
+    <color name="spending">#D37676</color>
+    <color name="remaining">#51829B</color>
+    <color name="saving">#DFAD72</color>
+    <color name="alert">#AC87C5</color>
+
+
     <color name="red_100">#F8CBCB</color>
     <color name="red_300">#E57373</color>
     <color name="red_400">#EF5350</color>
@@ -26,9 +38,6 @@
     <color name="lime_800">#9E9D24</color>
     <color name="lime_900">#827717</color>
     <color name="yellow_500">#FDD835</color>
-    <color name="orange_400">#FFA726</color>
-    <color name="orange_500">#FF9800</color>
-    <color name="orange_700">#F57C00</color>
     <color name="indigo_700">#303F9F</color>
     <color name="brown_400">#8D6E63</color>
     <color name="blue_grey_200">#9FABB1</color>

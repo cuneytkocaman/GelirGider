@@ -104,7 +104,6 @@
             android:id="@+id/constloanCreditType"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/teal_700"
             app:layout_constraintBottom_toTopOf="@+id/constBtYesNo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".30"

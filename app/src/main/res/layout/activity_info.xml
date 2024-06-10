@@ -26,7 +26,7 @@
                 android:fontFamily="@font/cabin_medium"
                 android:gravity="center"
                 android:text="Gelir Gider"
-                android:textColor="@color/red_300"
+                android:textColor="@color/spending"
                 android:textSize="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".15"
@@ -40,8 +40,8 @@
                 android:layout_height="0dp"
                 android:fontFamily="@font/cabin_medium"
                 android:gravity="center_horizontal|top"
-                android:text="v 2.2"
-                android:textColor="@color/red_300"
+                android:text="v 2.4"
+                android:textColor="@color/spending"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".1"
@@ -55,10 +55,12 @@
                 android:layout_height="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent=".67"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.487"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textAppVersion"
                 app:layout_constraintWidth_percent=".9">
+
+
 
                 <TextView
                     android:id="@+id/textAppNew"
@@ -110,13 +112,27 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/cabin"
-                    android:text="v2.3 Öngörülen maaş hesaplaması yapıldı."
+                    android:text="v2.3 Maaş hesaplaması yapıldı."
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textAppNew3" />
+
+                <TextView
+                    android:id="@+id/textAppNew5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/cabin"
+                    android:text="v2.4 Arayüzde değişiklik yapıldı. Pastel renkler kullanıldı."
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textAppNew4" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,7 +168,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.5"
                     app:layout_constraintWidth_percent=".3"
-                    app:srcCompat="@drawable/ic_logout" />
+                    app:srcCompat="@drawable/ic_back" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
