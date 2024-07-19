@@ -210,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
 
                     dialogYear.dismiss();
                 }
-
             }
         });
 
@@ -478,10 +477,11 @@ public class MainActivity extends AppCompatActivity {
         dialogNote.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         String txtMonth = mainBinding.textMonth.getText().toString(); // Seçilen ay değişkene atandı.
+        String txtYear = mainBinding.textYear.getText().toString(); // Seçilen yıl değişkene atandı.
         String currentUser = firebaseUser.getUid().toString(); // Online kullanıcı ID'si alındı. Her kullanıcının kendi notu, kendi ID'si altında görüntülendi.
         String noteId = txtMonth + "Note"; // Devamlı güncelleme yapılacağı için sabit bir ID oluşturuldu.
 
-        referenceNote = FirebaseDatabase.getInstance().getReference("Note").child(currentUser).child(currentlyYear).child(txtMonth);
+        referenceNote = FirebaseDatabase.getInstance().getReference("Note").child(currentUser).child(txtYear).child(txtMonth);
 
         referenceNote.addValueEventListener(new ValueEventListener() { // Notu görüntüleme
             @Override
@@ -538,7 +538,7 @@ public class MainActivity extends AppCompatActivity {
                             updateNote.put("spendingNote", spNote); // Gider notu güncellendi.
                             updateNote.put("savingNote", savNote); // Birikim notu güncellendi.
 
-                            referenceNote.child(currentUser).child(currentlyYear).child(txtMonth).child(noteId).updateChildren(updateNote);
+                            referenceNote.child(currentUser).child(txtYear).child(txtMonth).child(noteId).updateChildren(updateNote);
 
                             dialogNote.dismiss();
                         }
